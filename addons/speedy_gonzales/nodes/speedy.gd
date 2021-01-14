@@ -14,6 +14,9 @@ var current_hotspot: Vector2
 # The current shape
 var current_shape
 
+# Wether the mouse cursor is hidden currently
+var hidden: bool
+
 
 # Activate mouse cursor handling by Speedy and load default cursors
 func _init():
@@ -28,7 +31,9 @@ func _init():
 
 # Switch the cursor texture when needed
 func _process(delta):
-	if current_shape != Input.get_current_cursor_shape():
+	if hidden and $Cursor.texture != null:
+		$Cursor.texture = null
+	elif current_shape != Input.get_current_cursor_shape():
 		var shape = Input.get_current_cursor_shape()
 		current_shape = shape
 		current_hotspot = hotspots[shape]
@@ -52,3 +57,4 @@ func set_custom_mouse_cursor(
 	if shape == current_shape:
 		current_hotspot = hotspots[shape]
 		$Cursor.texture = textures[shape]
+
