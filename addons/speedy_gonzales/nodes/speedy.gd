@@ -10,7 +10,7 @@ var current_hotspot: Vector2
 var current_shape
 
 
-func _ready():
+func _init():
 	if not Engine.editor_hint:
 		Input.set_mouse_mode(
 			Input.MOUSE_MODE_HIDDEN
@@ -40,3 +40,6 @@ func set_custom_mouse_cursor(
 ):
 	textures[shape] = image
 	hotspots[shape] = hotspot
+	if shape == current_shape:
+		current_hotspot = hotspots[shape]
+		$Cursor.texture = textures[shape]
