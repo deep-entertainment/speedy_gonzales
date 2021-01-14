@@ -50,11 +50,17 @@ func _input(event):
 func set_custom_mouse_cursor(
 	image: Texture, 
 	shape = Input.CURSOR_ARROW, 
-	hotspot: Vector2 = Vector2(0,0)
+	hotspot: Vector2 = Vector2(0,0),
+	target_position = null
 ):
 	textures[shape] = image
 	hotspots[shape] = hotspot
+	if target_position == null and get_viewport() != null:
+		target_position = get_viewport().get_mouse_position() - current_hotspot
+	elif target_position != null:
+		get_viewport().warp_mouse(target_position + hotspot)
 	if shape == current_shape:
 		current_hotspot = hotspots[shape]
 		$Cursor.texture = textures[shape]
+		$Cursor.position = target_position
 
