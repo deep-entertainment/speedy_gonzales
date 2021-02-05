@@ -17,6 +17,9 @@ var current_shape
 # Wether the mouse cursor is hidden currently
 var hidden: bool setget _set_hidden
 
+# Keep the current cursor shape and don't update it
+var keep_shape: bool = false
+
 
 # Activate mouse cursor handling by Speedy and load default cursors
 func _init():
@@ -33,7 +36,8 @@ func _init():
 func _input(event):
 	if event is InputEventMouseMotion:
 		$Cursor.position = event.position - current_hotspot
-		if not hidden and current_shape != Input.get_current_cursor_shape():
+		if not hidden and not keep_shape \
+				and current_shape != Input.get_current_cursor_shape():
 			_update_shape()
 		
 
