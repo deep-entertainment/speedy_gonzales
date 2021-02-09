@@ -7,6 +7,5 @@ pause_mode = 2
 layer = 128
 script = ExtResource( 1 )
 
-[node name="Cursor" type="AnimatedSprite" parent="."]
-playing = true
+[node name="Cursor" type="Sprite" parent="."]
 centered = false

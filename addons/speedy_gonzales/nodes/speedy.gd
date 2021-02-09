@@ -28,7 +28,7 @@ func _init():
 			Input.MOUSE_MODE_HIDDEN
 		)
 	set_custom_mouse_cursor(
-		preload("res://addons/speedy_gonzales/images/arrow.tres")
+		preload("res://addons/speedy_gonzales/images/arrow.png")
 	)
 
 
@@ -43,7 +43,7 @@ func _input(event):
 
 # Set the custom mouse cursor
 func set_custom_mouse_cursor(
-	image: SpriteFrames, 
+	image: Texture, 
 	shape = Input.CURSOR_ARROW, 
 	hotspot: Vector2 = Vector2(0,0),
 	target_position = null
@@ -56,7 +56,7 @@ func set_custom_mouse_cursor(
 		get_viewport().warp_mouse(target_position + hotspot)
 	if shape == current_shape:
 		current_hotspot = hotspots[shape]
-		$Cursor.frames = textures[shape]
+		$Cursor.texture = textures[shape]
 		$Cursor.position = target_position
 
 
@@ -64,9 +64,8 @@ func set_custom_mouse_cursor(
 func _set_hidden(value: bool):
 	hidden = value
 	if hidden:
-		$Cursor.hide()
+		$Cursor.texture = null
 	else:
-		$Cursor.show()
 		_update_shape()
 
 
@@ -75,4 +74,4 @@ func _update_shape():
 	var shape = Input.get_current_cursor_shape()
 	current_shape = shape
 	current_hotspot = hotspots[shape]
-	$Cursor.frames = textures[shape]
+	$Cursor.texture = textures[shape]
