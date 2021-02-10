@@ -35,10 +35,10 @@ func _init():
 # Handle mouse motions and switch cursor when needed
 func _input(event):
 	if event is InputEventMouseMotion:
-		$Cursor.position = event.position - current_hotspot
 		if not hidden and not keep_shape \
 				and current_shape != Input.get_current_cursor_shape():
 			_update_shape()
+		$Cursor.position = event.position - current_hotspot
 		
 
 # Set the custom mouse cursor
