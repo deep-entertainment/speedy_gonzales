@@ -21,11 +21,6 @@ var hidden: bool setget _set_hidden
 var keep_shape: bool = false
 
 
-# Wether the cursor is currently hidden and should be unhidden
-# with the first movement
-var _quick_hide: bool = false
-
-
 # Activate mouse cursor handling by Speedy and load default cursors
 func _init():
 	if not Engine.editor_hint:
@@ -40,28 +35,11 @@ func _init():
 # Handle mouse motions and switch cursor when needed
 func _input(event):
 	if event is InputEventMouseMotion:
-		if _quick_hide:
-			_set_hidden(false)
 		if not hidden and not keep_shape \
 				and current_shape != Input.get_current_cursor_shape():
 			update_shape()
 		$Cursor.position = event.position - current_hotspot
-
-
- # Update the cursor to reflect the current shape
-func update_shape():
-	var shape = Input.get_current_cursor_shape()
-	current_shape = shape
-	current_hotspot = hotspots[shape]
-	$Cursor.texture = textures[shape]
-
-
-# Quickly hide the cursor until the next movement
-# Workaround for https://github.com/godotengine/godot/issues/45936
-func quick_hide():
-	_quick_hide = true
-	_set_hidden(true)
-	
+		
 
 # Set the custom mouse cursor
 func set_custom_mouse_cursor(
@@ -89,3 +67,11 @@ func _set_hidden(value: bool):
 		$Cursor.texture = null
 	else:
 		update_shape()
+
+
+# Update the cursor to reflect the current shape
+func update_shape():
+	var shape = Input.get_current_cursor_shape()
+	current_shape = shape
+	current_hotspot = hotspots[shape]
+	$Cursor.texture = textures[shape]
