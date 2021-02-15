@@ -37,7 +37,7 @@ func _input(event):
 	if event is InputEventMouseMotion:
 		if not hidden and not keep_shape \
 				and current_shape != Input.get_current_cursor_shape():
-			update_shape()
+			_update_shape()
 		$Cursor.position = event.position - current_hotspot
 		
 
@@ -66,11 +66,11 @@ func _set_hidden(value: bool):
 	if hidden:
 		$Cursor.texture = null
 	else:
-		update_shape()
+		_update_shape()
 
 
 # Update the cursor to reflect the current shape
-func update_shape():
+func _update_shape():
 	var shape = Input.get_current_cursor_shape()
 	current_shape = shape
 	current_hotspot = hotspots[shape]
