@@ -33,6 +33,10 @@ func _init():
 
 
 # Handle mouse motions and switch cursor when needed
+#
+# ** Parameters **
+#
+# - event: The input event
 func _input(event):
 	if event is InputEventMouseMotion:
 		if not hidden and not keep_shape \
@@ -42,6 +46,13 @@ func _input(event):
 		
 
 # Set the custom mouse cursor
+#
+# ** Parameters **
+#
+# - image: The image to use for the mouse cursor
+# - shape: The shape id that the image should represent
+# - hotspot: The hotspot position of the cursor
+# - target_position: Warp the mouse cursor to this point
 func set_custom_mouse_cursor(
 	image: Texture, 
 	shape = Input.CURSOR_ARROW, 
@@ -60,7 +71,22 @@ func set_custom_mouse_cursor(
 		$Cursor.position = target_position
 
 
+# Force the current mouse cursor to display the given shape
+#
+# ** Parameters **
+#
+# - shape (Input.CursorShape) the shape id to set
+func set_shape(shape: int):
+	current_shape = shape
+	current_hotspot = hotspots[shape]
+	$Cursor.texture = textures[shape]
+
+
 # Disable the mouse cursor
+#
+# ** Parameters **
+#
+# - value: Wether the mouse cursor is hidden or not
 func _set_hidden(value: bool):
 	hidden = value
 	if hidden:
@@ -71,7 +97,5 @@ func _set_hidden(value: bool):
 
 # Update the cursor to reflect the current shape
 func _update_shape():
-	var shape = Input.get_current_cursor_shape()
-	current_shape = shape
-	current_hotspot = hotspots[shape]
-	$Cursor.texture = textures[shape]
+	set_shape(Input.get_current_cursor_shape())
+	
