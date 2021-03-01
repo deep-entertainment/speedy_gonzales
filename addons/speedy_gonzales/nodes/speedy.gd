@@ -32,6 +32,11 @@ func _init():
 	)
 
 
+# Force texture update on every loop to avoid quirks when changing scenes
+func _process(_delta):
+	$Cursor.texture = textures[current_shape]
+
+
 # Handle mouse motions and switch cursor when needed
 #
 # ** Parameters **
@@ -79,7 +84,6 @@ func set_custom_mouse_cursor(
 func set_shape(shape: int):
 	current_shape = shape
 	current_hotspot = hotspots[shape]
-	$Cursor.texture = textures[shape]
 
 
 # Disable the mouse cursor
