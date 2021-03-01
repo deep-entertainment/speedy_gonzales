@@ -17,9 +17,6 @@ var current_shape
 # Wether the mouse cursor is hidden currently
 var hidden: bool setget _set_hidden
 
-# Keep the current cursor shape and don't update it
-var keep_shape: bool = false
-
 
 # Activate mouse cursor handling by Speedy and load default cursors
 func _init():
@@ -32,21 +29,16 @@ func _init():
 	)
 
 
-# Force texture update on every loop to avoid quirks when changing scenes
-func _process(_delta):
-	if current_shape != null and current_shape in textures:
-		$Cursor.texture = textures[current_shape]
-
-
 # Handle mouse motions and switch cursor when needed
 #
 # ** Parameters **
 #
 # - event: The input event
 func _input(event):
-	if event is InputEventMouseMotion:
-		if not hidden and not keep_shape \
-				and current_shape != Input.get_current_cursor_shape():
+	if event is InputEventMouseMotion and \
+			(event as InputEventMouseMotion).relative != Vector2(0,0):
+		if not hidden and \
+				current_shape != Input.get_current_cursor_shape():
 			_update_shape()
 		$Cursor.position = event.position - current_hotspot
 		
@@ -85,6 +77,7 @@ func set_custom_mouse_cursor(
 func set_shape(shape: int):
 	current_shape = shape
 	current_hotspot = hotspots[shape]
+	$Cursor.texture = textures[current_shape]
 
 
 # Disable the mouse cursor
