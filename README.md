@@ -30,7 +30,7 @@ Every time the mouse cursor is over a control that has `default_mouse_cursor_sha
 
 ## Usage without Control nodes
 
-If you only want to control the mouse cursor shape by code without relying on Control nodes, you can set
+If you only want to control the mouse cursor shape by code without relying on Control nodes, you can set:
 
 ```gdscript
 Speedy.keep_shape = true
