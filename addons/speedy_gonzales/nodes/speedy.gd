@@ -27,9 +27,6 @@ func _init():
 		Input.set_mouse_mode(
 			Input.MOUSE_MODE_HIDDEN
 		)
-	set_custom_mouse_cursor(
-		preload("res://addons/speedy_gonzales/images/arrow.png")
-	)
 
 
 # Handle mouse motions and switch cursor when needed
