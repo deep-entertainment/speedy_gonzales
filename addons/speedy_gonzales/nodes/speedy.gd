@@ -21,15 +21,20 @@ var hidden: bool setget _set_hidden
 var keep_shape: bool = false
 
 
+# Helper variable if we're on a touch device
+var is_touch: bool = false
+
+
 # Activate mouse cursor handling by Speedy and load default cursors
 func _init():
-	if not Engine.editor_hint and not OS.has_touchscreen_ui_hint():
+	is_touch = OS.has_touchscreen_ui_hint()
+	if not Engine.editor_hint and not is_touch:
 		Input.set_mouse_mode(
 			Input.MOUSE_MODE_HIDDEN
 		)
 
 func _ready():
-	if OS.has_touchscreen_ui_hint():
+	if is_touch:
 		_set_hidden(true)
 
 
@@ -39,7 +44,7 @@ func _ready():
 #
 # - event: The input event
 func _input(event):
-	if not OS.has_touchscreen_ui_hint() and \
+	if not is_touch and \
 			event is InputEventMouseMotion and \
 			(event as InputEventMouseMotion).relative != Vector2(0,0):
 		if not hidden and not keep_shape and \
@@ -62,7 +67,7 @@ func set_custom_mouse_cursor(
 	hotspot: Vector2 = Vector2(0,0),
 	target_position = null
 ):
-	if not OS.has_touchscreen_ui_hint():
+	if not is_touch:
 		textures[shape] = image
 		hotspots[shape] = hotspot
 		if target_position == null and get_viewport() != null:
@@ -81,7 +86,7 @@ func set_custom_mouse_cursor(
 #
 # - shape (Input.CursorShape) the shape id to set
 func set_shape(shape: int):
-	if not OS.has_touchscreen_ui_hint():
+	if not is_touch:
 		current_shape = shape
 		current_hotspot = hotspots[shape]
 		$Cursor.texture = textures[current_shape]
@@ -96,7 +101,7 @@ func _set_hidden(value: bool):
 	hidden = value
 	if hidden:
 		$Cursor.texture = null
-	elif not OS.has_touchscreen_ui_hint():
+	elif not is_touch:
 		_update_shape()
 
 
