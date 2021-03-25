@@ -21,12 +21,21 @@ var hidden: bool setget _set_hidden
 var keep_shape: bool = false
 
 
+# Helper variable if we're on a touch device
+var is_touch: bool = false
+
+
 # Activate mouse cursor handling by Speedy and load default cursors
 func _init():
-	if not Engine.editor_hint:
+	is_touch = OS.has_touchscreen_ui_hint()
+	if not Engine.editor_hint and not is_touch:
 		Input.set_mouse_mode(
 			Input.MOUSE_MODE_HIDDEN
 		)
+
+func _ready():
+	if is_touch:
+		_set_hidden(true)
 
 
 # Handle mouse motions and switch cursor when needed
@@ -35,7 +44,8 @@ func _init():
 #
 # - event: The input event
 func _input(event):
-	if event is InputEventMouseMotion and \
+	if not is_touch and \
+			event is InputEventMouseMotion and \
 			(event as InputEventMouseMotion).relative != Vector2(0,0):
 		if not hidden and not keep_shape and \
 				current_shape != Input.get_current_cursor_shape():
@@ -57,16 +67,17 @@ func set_custom_mouse_cursor(
 	hotspot: Vector2 = Vector2(0,0),
 	target_position = null
 ):
-	textures[shape] = image
-	hotspots[shape] = hotspot
-	if target_position == null and get_viewport() != null:
-		target_position = get_viewport().get_mouse_position() - current_hotspot
-	elif target_position != null:
-		get_viewport().warp_mouse(target_position + hotspot)
-	if shape == current_shape:
-		current_hotspot = hotspots[shape]
-		$Cursor.texture = textures[shape]
-		$Cursor.position = target_position
+	if not is_touch:
+		textures[shape] = image
+		hotspots[shape] = hotspot
+		if target_position == null and get_viewport() != null:
+			target_position = get_viewport().get_mouse_position() - current_hotspot
+		elif target_position != null:
+			get_viewport().warp_mouse(target_position + hotspot)
+		if shape == current_shape:
+			current_hotspot = hotspots[shape]
+			$Cursor.texture = textures[shape]
+			$Cursor.position = target_position	
 
 
 # Force the current mouse cursor to display the given shape
@@ -75,9 +86,10 @@ func set_custom_mouse_cursor(
 #
 # - shape (Input.CursorShape) the shape id to set
 func set_shape(shape: int):
-	current_shape = shape
-	current_hotspot = hotspots[shape]
-	$Cursor.texture = textures[current_shape]
+	if not is_touch:
+		current_shape = shape
+		current_hotspot = hotspots[shape]
+		$Cursor.texture = textures[current_shape]
 
 
 # Disable the mouse cursor
@@ -89,7 +101,7 @@ func _set_hidden(value: bool):
 	hidden = value
 	if hidden:
 		$Cursor.texture = null
-	else:
+	elif not is_touch:
 		_update_shape()
 
 
