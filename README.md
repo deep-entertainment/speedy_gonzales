@@ -28,6 +28,8 @@ Every time the mouse cursor is over a control that has `default_mouse_cursor_sha
 
 **Be aware**, that *Speedy Gonzales* completely takes over mouse control, so all mouse cursor shapes need to be controlled by it.
 
+For details refer to the [API-Docs](docs/api).
+
 ## Usage without Control nodes
 
 If you only want to control the mouse cursor shape by code without relying on Control nodes, you can set:
