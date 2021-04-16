@@ -90,6 +90,8 @@ func set_shape(shape: int):
 		current_shape = shape
 		current_hotspot = hotspots[shape]
 		$Cursor.texture = textures[current_shape]
+		$Cursor.position = \
+			get_viewport().get_mouse_position() - current_hotspot
 
 
 # Disable the mouse cursor
