@@ -20,6 +20,9 @@ var hidden: bool setget _set_hidden
 # Keep the current cursor shape and don't update it
 var keep_shape: bool = false
 
+# Keep the urrent cursor shape for one event
+var keep_shape_once: bool = false
+
 
 # Helper variable if we're on a touch device
 var is_touch: bool = false
@@ -47,9 +50,12 @@ func _input(event):
 	if not is_touch and \
 			event is InputEventMouseMotion and \
 			(event as InputEventMouseMotion).relative != Vector2(0,0):
-		if not hidden and not keep_shape and \
+		if not hidden and \
+				not keep_shape and \
+				not keep_shape_once and \
 				current_shape != Input.get_current_cursor_shape():
 			_update_shape()
+		keep_shape_once = false
 		$Cursor.position = event.position - current_hotspot
 		
 

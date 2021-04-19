@@ -58,6 +58,14 @@ var keep_shape: bool = false
 
 Keep the current cursor shape and don't update it
 
+### keep\_shape\_once
+
+```gdscript
+var keep_shape_once: bool = false
+```
+
+Keep the urrent cursor shape for one event
+
 ### is\_touch
 
 ```gdscript
