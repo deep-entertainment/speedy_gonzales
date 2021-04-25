@@ -2,7 +2,7 @@
   "title": "Speedy Gonzales",
   "description": "Custom software mouse cursor addon for Godot",
   "category_id": "5",
-  "godot_version": "3.2",
+  "godot_version": "3.3",
   "version_string": "{{ context.release.tag_name }}",
   "cost": "MIT",
   "download_provider": "GitHub",
