@@ -80,7 +80,7 @@ func set_custom_mouse_cursor(
 			target_position = get_viewport().get_mouse_position() - current_hotspot
 		elif target_position != null:
 			get_viewport().warp_mouse(target_position + hotspot)
-		if shape == current_shape:
+		if shape == current_shape and not hidden:
 			current_hotspot = hotspots[shape]
 			$Cursor.texture = textures[shape]
 			$Cursor.position = target_position	
@@ -92,7 +92,7 @@ func set_custom_mouse_cursor(
 #
 # - shape (Input.CursorShape) the shape id to set
 func set_shape(shape: int):
-	if not is_touch:
+	if not is_touch and not hidden:
 		current_shape = shape
 		current_hotspot = hotspots[shape]
 		$Cursor.texture = textures[current_shape]
