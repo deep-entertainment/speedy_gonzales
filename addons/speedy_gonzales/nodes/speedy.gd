@@ -30,7 +30,9 @@ var is_touch: bool = false
 
 # Activate mouse cursor handling by Speedy and load default cursors
 func _init():
-	is_touch = OS.has_touchscreen_ui_hint()
+	# Workaround for faulty feature detection described in
+	# https://github.com/godotengine/godot/issues/49113
+	is_touch = OS.get_name() == "Android" || OS.get_name() == "iPhone"
 	if not Engine.editor_hint and not is_touch:
 		Input.set_mouse_mode(
 			Input.MOUSE_MODE_HIDDEN
