@@ -1,0 +1,1 @@
+See [addons/speedy_gonzales/LICENSE](addons/speedy_gonzales/LICENSE)
