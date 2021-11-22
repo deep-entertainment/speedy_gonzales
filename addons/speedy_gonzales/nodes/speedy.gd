@@ -102,7 +102,7 @@ func set_shape(shape: int):
 			get_viewport().get_mouse_position() - current_hotspot
 
 
-# Disable the mouse cursor
+# Hide or show the mouse cursor
 #
 # ** Parameters **
 #
@@ -110,9 +110,9 @@ func set_shape(shape: int):
 func _set_hidden(value: bool):
 	hidden = value
 	if hidden:
-		$Cursor.texture = null
+		$Cursor.hide()
 	elif not is_touch:
-		_update_shape()
+		$Cursor.show()
 
 
 # Update the cursor to reflect the current shape
