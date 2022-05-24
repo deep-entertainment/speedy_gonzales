@@ -6,7 +6,7 @@ on:
 name: Push to game template
 
 env:
-    BRANCH: ${{ fromJson('{ "prereleased": "develop", "released": "main" }')[github.event.action] }}
+    BRANCH: "${{ fromJson('{ \"prereleased\": \"develop\", \"released\": \"main\" }')[github.event.action] }}"
 
 jobs:
     game-template:
