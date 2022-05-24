@@ -9,4 +9,4 @@ jobs:
     release-main:
         uses: deep-entertainment/egoventure-example-game/.github/workflows/release.shared.yml@main
         with:
-            token: ${{ secrets.DEPLOYMENT_TOKEN }}
+            token: "${{ secrets.DEPLOYMENT_TOKEN }}"
