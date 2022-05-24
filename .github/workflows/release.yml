@@ -7,7 +7,4 @@ on:
             - main
 
 jobs:
-    release:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: deep-entertainment/egoventure-example-game/.github/workflows/release.shared.yml@${{ github.ref_name }}
+    - uses: deep-entertainment/egoventure-example-game/.github/workflows/release.shared.yml@${{ github.ref_name }}
