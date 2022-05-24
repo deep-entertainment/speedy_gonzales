@@ -5,11 +5,9 @@ on:
 
 name: Push to game template
 
-env:
-    BRANCH: "${{ fromJson('{ \"prereleased\": \"develop\", \"released\": \"main\" }')[github.event.action] }}"
-
 jobs:
     game-template:
+        if: github.event.action == 'released'
         uses: deep-entertainment/egoventure-game-template/.github/workflows/game-template.yaml@main
         with:
             addon: speedy_gonzales
