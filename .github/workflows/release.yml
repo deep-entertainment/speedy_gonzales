@@ -7,5 +7,10 @@ on:
             - main
 
 jobs:
-    release:
-        uses: "deep-entertainment/egoventure-example-game/.github/workflows/release.shared.yml@${{ github.ref_name }}"
+    release-dev:
+        uses: deep-entertainment/egoventure-example-game/.github/workflows/release.shared.yml@develop
+        if: github.ref_name == "develop"
+    release-main:
+        uses: deep-entertainment/egoventure-example-game/.github/workflows/release.shared.yml@main
+        if: github.ref_name == "main"
+
