@@ -7,7 +7,7 @@ name: Push to assetlib
 
 jobs:
     publish:
-        if: github.event.action == "released"
+        if: github.event.action == 'released'
         runs-on: ubuntu-latest
         name: Publish new version to asset lib
         steps:
