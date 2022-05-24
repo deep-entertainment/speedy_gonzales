@@ -7,4 +7,5 @@ on:
             - main
 
 jobs:
-    - uses: deep-entertainment/egoventure-example-game/.github/workflows/release.shared.yml@${{ github.ref_name }}
+    release:
+        uses: deep-entertainment/egoventure-example-game/.github/workflows/release.shared.yml@${{ github.ref_name }}
