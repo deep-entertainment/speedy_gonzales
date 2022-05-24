@@ -12,7 +12,7 @@ jobs:
     game-template:
         runs-on: ubuntu-latest
         steps:
-            - uses: deep-entertainment/egoventure-game-template/.github/workflows/game-template.yaml@${{ env.BRANCH }}
+            - uses: deep-entertainment/egoventure-game-template/.github/workflows/game-template.yaml@main
               with:
                 addon: speedy_gonzales
                 branch: "${{ env.branch }}"
