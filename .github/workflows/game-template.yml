@@ -11,6 +11,6 @@ env:
 jobs:
     game-template:
         uses: deep-entertainment/egoventure-game-template/.github/workflows/game-template.yaml@main
-            with:
-                addon: speedy_gonzales
-                branch: "${{ env.branch }}"
+        with:
+            addon: speedy_gonzales
+            branch: "${{ env.branch }}"
