@@ -1,13 +1,12 @@
 on: 
     release:
         types:
-          - published
+          - released
 
 name: Push to assetlib
 
 jobs:
     publish:
-        if: github.event.action == 'released'
         runs-on: ubuntu-latest
         name: Publish new version to asset lib
         steps:
@@ -20,5 +19,3 @@ jobs:
                 password: ${{ secrets.ASSET_STORE_PASSWORD }}
                 assetId: 904
                 approveDirectly: "true"
-
-
