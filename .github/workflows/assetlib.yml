@@ -1,7 +1,8 @@
 on: 
     release:
         types:
-          - published
+          - released
+
 name: Push to assetlib
 
 jobs:
@@ -17,5 +18,4 @@ jobs:
                 username: deepgames
                 password: ${{ secrets.ASSET_STORE_PASSWORD }}
                 assetId: 904
-
-
+                approveDirectly: "true"
