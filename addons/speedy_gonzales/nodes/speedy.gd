@@ -32,7 +32,7 @@ var is_touch: bool = false
 func _init():
 	# Workaround for faulty feature detection described in
 	# https://github.com/godotengine/godot/issues/49113
-	is_touch = OS.get_name() == "Android" || OS.get_name() == "iPhone"
+	is_touch = OS.get_name() == "Android" || OS.get_name() == "iOS"
 	if not Engine.editor_hint and not is_touch:
 		Input.set_mouse_mode(
 			Input.MOUSE_MODE_HIDDEN
