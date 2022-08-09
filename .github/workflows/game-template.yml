@@ -11,3 +11,5 @@ jobs:
         with:
             addon: speedy_gonzales
             branch: "main"
+        secrets:
+            token: "{{ secrets.DEPLOYMENT_TOKEN }}"
