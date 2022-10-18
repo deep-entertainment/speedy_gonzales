@@ -1,3 +1,25 @@
+## [1.4.0-develop.0](https://github.com/deep-entertainment/speedy_gonzales/compare/1.1.1...1.4.0-develop.0) (2022-10-18)
+
+
+### Features
+
+* New release process ([52bb418](https://github.com/deep-entertainment/speedy_gonzales/commit/52bb41892f262dc9d837cbafdbd011dd5461d798))
+
+
+### Bug Fixes
+
+* cursor shape update while hidden ([e7e13bf](https://github.com/deep-entertainment/speedy_gonzales/commit/e7e13bf928996aa25541b943d9df3bc5998ece9d))
+* Fixing workflow ([a1c5290](https://github.com/deep-entertainment/speedy_gonzales/commit/a1c5290c2d82fc753812953631c174c06e17d172))
+* Fixing workflow ([49f312d](https://github.com/deep-entertainment/speedy_gonzales/commit/49f312df870ee9f42db1ec2711b86742997d751c))
+
+
+### Documentation
+
+* Added missing docs and workflows ([513ef76](https://github.com/deep-entertainment/speedy_gonzales/commit/513ef76f9cdf0518a9979b3e3bc7a58d3859e702))
+* Added missing docs and workflows ([b58faf2](https://github.com/deep-entertainment/speedy_gonzales/commit/b58faf22817a743fc28aa4f37bf91fedcf4b453c))
+
+
+
 
 
 ### [0.6.1-develop.0](https://github.com/deep-entertainment/speedy_gonzales/compare/0.5.0...0.6.1-develop.0) (2022-05-24)
