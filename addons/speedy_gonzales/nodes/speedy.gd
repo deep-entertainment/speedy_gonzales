@@ -94,7 +94,7 @@ func set_custom_mouse_cursor(
 #
 # - shape (Input.CursorShape) the shape id to set
 func set_shape(shape: int):
-	if not is_touch and not hidden:
+	if not is_touch:
 		current_shape = shape
 		current_hotspot = hotspots[shape]
 		$Cursor.texture = textures[current_shape]
